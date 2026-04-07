@@ -915,12 +915,15 @@ p {
   grid-template-columns:1fr 1fr;
   gap:3rem;
   margin-bottom:4rem;
+  align-items: stretch;
 }
 .alert-category{
   background:var(--secondary-color);
   border-radius:var(--radius-lg);
   overflow:hidden;
   box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
 }
 .category-header{
   background:var(--primary-color);
@@ -1973,6 +1976,14 @@ p {
   .alert-categories {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  .alert-category.swap-right {
+    grid-column: auto;
+    order: auto;
+  }
+  .alert-categories .alert-category:nth-child(2) {
+    grid-column: auto;
+    order: auto;
   }
   .category-header {
     padding: 1.5rem;
