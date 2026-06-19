@@ -769,8 +769,9 @@ p {
 .specialties-list li::before{
   content:'';
   position:absolute;
-  left:0;
-  top:1.15rem;
+  left:0.25rem;
+  top:50%;
+  transform:translateY(-50%);
   width:6px;
   height:6px;
   border-radius:50%;
@@ -2061,7 +2062,7 @@ p {
   }
 
   .specialties-list li {
-    padding: 0.75rem 0;
+    padding: 0.75rem 0 0.75rem 1.25rem;
     font-size: 0.95rem;
     line-height: 1.6;
   }
@@ -2708,12 +2709,9 @@ p {
     font-size: 0.95rem;
     margin-bottom: 1rem;
   }
-  .specialties-list {
-    padding-left: 1.25rem;
-  }
   .specialties-list li {
     font-size: 0.95rem;
-    padding: 0.375rem 0;
+    padding: 0.375rem 0 0.375rem 1.25rem;
   }
   .about-qualifications {
     flex-direction: column;
@@ -3065,7 +3063,7 @@ p {
   }
   .specialties-list li {
     font-size: 0.875rem;
-    padding: 0.3rem 0;
+    padding: 0.3rem 0 0.3rem 1.25rem;
   }
   .qualification-card {
     padding: 1.25rem;
