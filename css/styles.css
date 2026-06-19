@@ -1097,7 +1097,7 @@ p {
   border:1px solid rgba(212, 165, 165, 0.12);
 }
 .category-header{
-  background:linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  background:linear-gradient(135deg, #B9868A 0%, #8F5A60 100%);
   color:var(--white);
   padding:1.75rem 2rem;
   display:flex;
@@ -1115,6 +1115,17 @@ p {
   flex-shrink:0;
   border:1px solid rgba(255,255,255,0.25);
 }
+.category-icon--img{
+  background:#FFFFFF;
+  border:1px solid rgba(255,255,255,0.85);
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+.category-icon--img img{
+  width:38px;
+  height:38px;
+  display:block;
+  object-fit:contain;
+}
 .category-header h3{
   margin:0;
   font-family:var(--font-display);
@@ -1125,8 +1136,6 @@ p {
   padding:2rem;
 }
 .alert-item{
-  display:flex;
-  gap:1rem;
   padding:1.35rem 0;
   border-bottom:1px solid rgba(232, 213, 194, 0.45);
   transition:background 0.25s var(--ease-out);
@@ -1136,18 +1145,6 @@ p {
 }
 .alert-item:last-child{
   border-bottom:none;
-}
-.alert-icon{
-  width:40px;
-  height:40px;
-  background:linear-gradient(135deg, var(--blue-light), rgba(255,255,255,0.95));
-  border-radius:var(--radius-sm);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-  color:var(--blue-dark);
-  border:1px solid rgba(168, 197, 209, 0.3);
 }
 .alert-content h4{
   color:var(--text-primary);
@@ -1319,7 +1316,7 @@ p {
 .service-includes{
   list-style:none;
   padding:0;
-  margin-bottom:1.5rem;
+  margin-bottom:0;
 }
 .service-includes li{
   padding:0.5rem 0;
@@ -1336,20 +1333,39 @@ p {
   font-weight:bold;
 }
 .service-modalities{
+  padding:1.25rem 2rem 1.5rem;
+  background:linear-gradient(180deg, rgba(248, 245, 242, 0.4) 0%, rgba(248, 245, 242, 0.85) 100%);
+  border-top:1px solid rgba(212, 165, 165, 0.12);
+  flex-shrink:0;
+}
+.service-modalities-label{
+  display:block;
+  font-size:0.6875rem;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:0.75rem;
+}
+.service-modalities-tags{
   display:flex;
+  flex-wrap:wrap;
   gap:0.5rem;
-  padding:0 2rem 2rem;
-  justify-content:center;
-  align-items:center;
-  margin-top:auto;
+  align-items:flex-start;
 }
 .modality{
-  padding:0.5rem 1rem;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0.5rem 0.875rem;
   border-radius:999px;
   font-size:0.8125rem;
   font-weight:600;
-  flex:0 0 auto;
   letter-spacing:0.02em;
+  text-align:center;
+  line-height:1.35;
+  flex:0 0 auto;
+  max-width:100%;
 }
 .modality.presencial{
   background:var(--primary-color);
@@ -1699,12 +1715,6 @@ p {
   
   .alert-item {
     padding: 0.75rem 0;
-  }
-  
-  .alert-icon {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
   }
   
   .alert-content h4 {
@@ -2158,7 +2168,8 @@ p {
     height: 52px;
   }
 
-  .category-icon svg {
+  .category-icon svg,
+  .category-icon--img img {
     width: 28px;
     height: 28px;
   }
@@ -2173,13 +2184,6 @@ p {
 
   .alert-item {
     padding: 1rem 0;
-    gap: 1rem;
-  }
-
-  .alert-icon {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
   }
 
   .alert-content h4 {
@@ -2244,6 +2248,20 @@ p {
   .service-includes li {
     font-size: 0.9rem;
     padding: 0.6rem 0;
+  }
+
+  .service-modalities {
+    padding: 1.125rem 2rem 1.375rem;
+  }
+
+  .service-modalities-tags {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modality {
+    width: 100%;
+    white-space: normal;
   }
 
   /* SEÇÃO CONTATO - Tablet */
@@ -2394,13 +2412,6 @@ p {
   
   .alert-item {
     padding: 1rem 0;
-    gap: 0.75rem;
-  }
-  
-  .alert-icon {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
   }
   
   .alert-content h4 {
@@ -2777,8 +2788,7 @@ p {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  .specialization-card,
-  .service-card {
+  .specialization-card {
     padding: 1.75rem;
   }
   .specialization-card h3 {
@@ -2795,6 +2805,27 @@ p {
   }
   .service-duration {
     font-size: 0.8rem;
+  }
+  .service-modalities {
+    padding: 1rem 1.5rem 1.25rem;
+  }
+
+  .service-modalities-label {
+    margin-bottom: 0.625rem;
+  }
+
+  .service-modalities-tags {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .modality {
+    width: 100%;
+    flex: 0 0 auto;
+    font-size: 0.8125rem;
+    padding: 0.625rem 1rem;
+    white-space: normal;
   }
   .service-price {
     font-size: 1.75rem;
@@ -2833,11 +2864,6 @@ p {
   }
   .alert-item {
     padding: 1rem 0;
-    gap: 1rem;
-  }
-  .alert-icon {
-    width: 22px;
-    height: 22px;
   }
   .alert-content h4 {
     font-size: 1rem;
@@ -3106,8 +3132,7 @@ p {
   .carousel-indicator.active {
     width: 20px;
   }
-  .specialization-card,
-  .service-card {
+  .specialization-card {
     padding: 1.5rem;
     margin-bottom: 1rem;
   }
@@ -3170,11 +3195,6 @@ p {
   }
   .alert-item {
     padding: 0.875rem 0;
-    gap: 0.75rem;
-  }
-  .alert-icon {
-    width: 20px;
-    height: 20px;
   }
   .alert-content h4 {
     font-size: 0.95rem;
