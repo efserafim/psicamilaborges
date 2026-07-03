@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://psicamilaborges.com.br/sitemap.xml
+
+# Desabilitar indexação de arquivos desnecessários
+Disallow: /js/
+Disallow: /css/
+Disallow: /favicon/
+Disallow: /*.js
+Disallow: /*.css
