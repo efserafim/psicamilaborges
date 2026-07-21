@@ -1,5 +1,20 @@
 // Site interactions
+const ROTA_TRACK_BASE = 'https://zuszasnxslusolpmstnp.supabase.co/functions/v1/whatsapp-redirect/psicamilaborges';
+
+function getRotaTrackUrl() {
+  const utmTerm = new URLSearchParams(window.location.search).get('utm_term') || '';
+  return `${ROTA_TRACK_BASE}?utm_term=${encodeURIComponent(utmTerm)}`;
+}
+
+function applyRotaTrackLinks() {
+  const rotaTrackUrl = getRotaTrackUrl();
+  document.querySelectorAll(`a[href*="${ROTA_TRACK_BASE}"]`).forEach(function(link) {
+    link.href = rotaTrackUrl;
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+  applyRotaTrackLinks();
 
   // Contact form handling
   const contactForm = document.getElementById('contactForm');
