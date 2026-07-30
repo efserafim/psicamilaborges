@@ -112,4 +112,68 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
+
+  // Testimonials carousel
+  const testimonialsCarousel = document.querySelector('.testimonials-carousel');
+  if (testimonialsCarousel) {
+    const slides = testimonialsCarousel.querySelectorAll('.testimonial-slide');
+    const dots = testimonialsCarousel.querySelectorAll('.testimonial-dot');
+    const prevBtn = testimonialsCarousel.querySelector('.testimonial-prev');
+    const nextBtn = testimonialsCarousel.querySelector('.testimonial-next');
+    let currentIndex = 0;
+    let autoplayTimer;
+
+    function goToSlide(index) {
+      currentIndex = (index + slides.length) % slides.length;
+
+      slides.forEach(function(slide, i) {
+        const isActive = i === currentIndex;
+        slide.classList.toggle('active', isActive);
+        slide.setAttribute('aria-hidden', String(!isActive));
+      });
+
+      dots.forEach(function(dot, i) {
+        const isActive = i === currentIndex;
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-selected', String(isActive));
+      });
+    }
+
+    function startAutoplay() {
+      clearInterval(autoplayTimer);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      autoplayTimer = setInterval(function() {
+        goToSlide(currentIndex + 1);
+      }, 7000);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        goToSlide(currentIndex - 1);
+        startAutoplay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        goToSlide(currentIndex + 1);
+        startAutoplay();
+      });
+    }
+
+    dots.forEach(function(dot, i) {
+      dot.addEventListener('click', function() {
+        goToSlide(i);
+        startAutoplay();
+      });
+    });
+
+    testimonialsCarousel.addEventListener('mouseenter', function() {
+      clearInterval(autoplayTimer);
+    });
+
+    testimonialsCarousel.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
+  }
 });
