@@ -176,4 +176,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
     startAutoplay();
   }
+
+  function isSiteWhatsAppButton(el) {
+    return el && (el.classList.contains('whatsapp-float') || el.closest('.whatsapp-float'));
+  }
+
+  function isDuplicateFloatingWhatsApp(el) {
+    if (!el || isSiteWhatsAppButton(el)) return false;
+    const href = (el.getAttribute && (el.getAttribute('href') || '')) || '';
+    const cls = typeof el.className === 'string' ? el.className : '';
+    const id = el.id || '';
+    const src = (el.getAttribute && (el.getAttribute('src') || '')) || '';
+    const looksLikeWhatsApp = /whatsapp|wa\.me|api\.whatsapp|whatsapp-fab/i.test(href + ' ' + cls + ' ' + id + ' ' + src);
+    if (!looksLikeWhatsApp) return false;
+    const style = window.getComputedStyle(el);
+    return style.position === 'fixed';
+  }
+
+  let whatsappObserver;
+  let whatsappTimer;
+
+  function removeDuplicateWhatsAppButtons() {
+    if (whatsappObserver) whatsappObserver.disconnect();
+    document.querySelectorAll('a, button, div, img, iframe, span').forEach(function(el) {
+      if (isDuplicateFloatingWhatsApp(el)) {
+        el.remove();
+      }
+    });
+    if (whatsappObserver) {
+      whatsappObserver.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  removeDuplicateWhatsAppButtons();
+  setTimeout(removeDuplicateWhatsAppButtons, 800);
+  setTimeout(removeDuplicateWhatsAppButtons, 2500);
+
+  whatsappObserver = new MutationObserver(function() {
+    clearTimeout(whatsappTimer);
+    whatsappTimer = setTimeout(removeDuplicateWhatsAppButtons, 80);
+  });
+  whatsappObserver.observe(document.body, { childList: true, subtree: true });
 });
